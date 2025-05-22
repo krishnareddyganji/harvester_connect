@@ -1,13 +1,20 @@
 import pymysql
+import os
 
-def get_connection():
-    return pymysql.connect(
-        host='localhost',
-        user='root',
-        password='your_password',
-        db='harvester_connect',
-        cursorclass=pymysql.cursors.DictCursor
-    )
+host = os.getenv("localhost")
+user = os.getenv("root")
+password = os.getenv("root")
+db = os.getenv("harvester_db")
+
+
+pymysql.connect(
+    host=host,
+    user=user,
+    password=password,
+    db=db,
+    cursorclass=pymysql.cursors.DictCursor
+)
+
 
 def get_all_tables_data():
     connection = get_connection()
