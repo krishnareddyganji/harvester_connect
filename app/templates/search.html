@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Search Harvester Owners by Village</h2>
+
+  <form method="POST" class="mb-4">
+    <input type="text" name="village" value="{{ village }}" placeholder="Enter village name" class="form-control mb-2">
+    <button class="btn btn-info">Search</button>
+  </form>
+
+  <h3>Owners:</h3>
+  {% if results %}
+    <ul class="list-group">
+      {% for owner in results %}
+        <li class="list-group-item">
+          <strong>Name:</strong> {{ owner.name }}<br>
+          <strong>Village:</strong> {{ owner.village }}
+
+          {% if owner.harvesters %}
+            <ul class="mt-2">
+              {% for h in owner.harvesters %}
+                <li>
+                  <strong>Machine type:</strong> {{ h.type }}<br>
+                  <strong>Vehicle number:</strong> {{ h.vehicle_number }}<br>
+                  <strong>Owner contact:</strong> {{ h.contact }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No harvesters registered.</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No owners found.</p>
+  {% endif %}
+</div>
+{% endblock %}

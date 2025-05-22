@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 40px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f0f0f0; }
+        h2 { margin-top: 40px; }
+        button { padding: 10px 20px; background: #c00; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="{{ url_for('admin_logout') }}">Logout</a>
+
+    <form method="POST">
+        {% for table_name, rows in tables.items() %}
+            <h2>{{ table_name }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        {% for col in rows[0].keys() %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="{{ table_name }}" value="{{ row['id'] }}">
+                        </td>
+                        {% for value in row.values() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+        <button type="submit" name="action" value="delete">Delete Selected</button>
+    </form>
+</body>
+</html>

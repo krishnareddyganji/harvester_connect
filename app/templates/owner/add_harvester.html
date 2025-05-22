@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Add Harvester{% endblock %}
+{% block content %}
+  <div class="container mt-4 content-box">
+    <h2 class="mb-4">Add Harvester</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-success">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <div class="form-group">
+        <label for="type">Harvester Type</label>
+        <select name="type" class="form-control" required>
+          <option value="">-- Select Harvester Type --</option>
+          <option value="Wheel-Type Paddy Harvester">Wheel-Type Paddy Harvester</option>
+          <option value="Track-Type Paddy Harvester (Chain Track or Crawler Type)">Track-Type Paddy Harvester (Chain Track or Crawler Type)</option>
+          <option value="Mini/Compact Paddy Harvester">Mini/Compact Paddy Harvester</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicle_number">Vehicle Number</label>
+        <input type="text" name="vehicle_number" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact</label>
+        <input type="text" name="contact" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+{% endblock %}

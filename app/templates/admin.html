@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th><th>Email</th><th>Role</th><th>Village</th><th>Harvester</th><th>Vehicle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.village }}</td>
+        <td>{{ user.harvester_type }}</td>
+        <td>{{ user.vehicle_number }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
